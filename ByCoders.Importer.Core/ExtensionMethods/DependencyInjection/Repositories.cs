@@ -11,6 +11,8 @@ namespace ByCoders.Importer.Core.ExtensionMethods.DependencyInjection
             return services
                 .AddScoped<IRefreshTokenRepository, RefreshTokenRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<ITransactionRepository, TransactionRepository>()
+                .AddScoped<ITransactionTypeRepository, TransactionTypeRepository>()
                 ;
         }
     }
