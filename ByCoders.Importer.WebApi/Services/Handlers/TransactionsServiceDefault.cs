@@ -1,20 +1,24 @@
-﻿using ByCoders.Importer.Core;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using ByCoders.Importer.Core;
 using ByCoders.Importer.Core.BusinessEntities;
 using ByCoders.Importer.Core.Repositories;
 using ByCoders.Importer.WebApi.Exceptions;
-using System.Linq;
+using ByCoders.Importer.WebApi.Models;
 
 namespace ByCoders.Importer.WebApi.Services.Handlers
 {
     public class TransactionsServiceDefault : ITransactionService
     {
         private readonly AppDbContext dbContext;
+        private readonly IMapper mapper;
         private readonly ITransactionTypeRepository transactionTypeRepository;
         private readonly ITransactionRepository transactionRepository;
 
-        public TransactionsServiceDefault(AppDbContext dbContext, ITransactionTypeRepository transactionTypeRepository, ITransactionRepository transactionRepository)
+        public TransactionsServiceDefault(AppDbContext dbContext, IMapper mapper, ITransactionTypeRepository transactionTypeRepository, ITransactionRepository transactionRepository)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
             this.transactionTypeRepository = transactionTypeRepository;
             this.transactionRepository = transactionRepository;
         }
@@ -61,8 +65,8 @@ namespace ByCoders.Importer.WebApi.Services.Handlers
                         Value = value,
                         CPF = taxId,
                         CardNumber = cardNumber,
-                        EmporiumOwner = shopOwner,
-                        EmporiumName = shopName
+                        ShopOwner = shopOwner,
+                        ShopName = shopName
                     };
 
                     await transactionRepository.InsertAsync(recordTransaction);
@@ -75,6 +79,11 @@ namespace ByCoders.Importer.WebApi.Services.Handlers
             {
                 await dbTransaction.RollbackAsync();
             }
+        }
+
+        public IQueryable<TransactionsModel> List(QueryParametersModel parameters)
+        {
+            return transactionRepository.List(parameters).ProjectTo<TransactionsModel>(mapper.ConfigurationProvider);
         }
     }
 }

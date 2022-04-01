@@ -1,0 +1,13 @@
+<span *ngIf="!this.loading">
+    {{ value() }}
+</span>
+
+<span *ngIf="this.loading">
+    <i class="fas fa-spinner fa-pulse me-2"></i>
+    <span>{{ this.params.loadingMessage }} </span>
+</span>
+
+<span *ngIf="this.error">
+    <i class="fas fa-exclamation text-danger me-2"></i>
+    <span> {{ this.params.loadingMessageFailure }} </span>
+</span>

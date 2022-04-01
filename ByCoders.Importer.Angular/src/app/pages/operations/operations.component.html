@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Operations history</h4>
+    </div>
+</div>
+
+<div class="card grid-container">
+    <div class="card-body">
+        <ag-grid-angular #grid
+            class="ag-theme-alpine"
+            [columnDefs]="columnDefs"
+            [rowSelection]="'multiple'"
+            [rowModelType]="'infinite'"
+            [frameworkComponents]="frameworkComponents"
+            
+            (gridReady)="onGridReady()"
+        ></ag-grid-angular>
+        <!-- [frameworkComponents]="this.frameworkComponents" -->
+    </div>
+</div>

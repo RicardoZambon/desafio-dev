@@ -16,9 +16,9 @@ namespace ByCoders.Importer.Core.BusinessEntities
 
         public string CardNumber { get; set; }
 
-        public string EmporiumName { get; set; }
+        public string ShopName { get; set; }
 
-        public string EmporiumOwner { get; set; }
+        public string ShopOwner { get; set; }
     }
 
     public class TransactionsConfiguration : EntityConfiguration<Transactions>

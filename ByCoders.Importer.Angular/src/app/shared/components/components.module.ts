@@ -9,6 +9,7 @@ import { LoginInputComponent } from './login/login-input/login-input.component';
 import { LogoutModalComponent } from './modals/logout-modal/logout-modal.component';
 import { NavigationDrawerComponent } from './navigation/navigation-drawer/navigation-drawer.component';
 import { NavigationItemComponent } from './navigation/navigation-item/navigation-item.component';
+import { GridLoadingRendererComponent } from './grid/grid-loading-renderer-component/grid-loading-renderer.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { NavigationItemComponent } from './navigation/navigation-item/navigation
     LogoutModalComponent,
     NavigationDrawerComponent,
     NavigationItemComponent,
+    GridLoadingRendererComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -29,6 +31,7 @@ import { NavigationItemComponent } from './navigation/navigation-item/navigation
     LogoutModalComponent,
     NavigationDrawerComponent,
     NavigationItemComponent,
+    GridLoadingRendererComponent,
   ]
 })
 export class ComponentsModule { }
