@@ -62,7 +62,7 @@ namespace ByCoders.Importer.Test.WebApiServices
 
             transactionRepositoryMock.Verify(m => m.InsertAsync(It.IsAny<Transactions>()), Times.Once);
 
-            contextMock.Verify(m => m.SaveChanges(), Times.Once);
+            contextMock.Verify(m => m.SaveChangesAsync(CancellationToken.None), Times.Once);
 
             dbTransactionMock.Verify(m => m.CommitAsync(CancellationToken.None), Times.Once);
         }
