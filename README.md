@@ -1,85 +1,112 @@
-# Desafio programação - para vaga desenvolvedor
+# ByCoders - Coding Challenge
 
-Por favor leiam este documento do começo ao fim, com muita atenção.
-O intuito deste teste é avaliar seus conhecimentos técnicos em programação.
-O teste consiste em parsear [este arquivo de texto(CNAB)](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt) e salvar suas informações(transações financeiras) em uma base de dados a critério do candidato.
-Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quiser, porém normalmente você não deve precisar de mais do que algumas horas.
+This solution is using the following technologies:
 
-# Instruções de entrega do desafio
+- C# with .NET 6
+- Entity Framework with SQL Server
+- Swagger
+- xUnit
+- Angular 13 with RxJS
+- SCSS
+- Bootstrap and FontAwesome
 
-1. Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
-2. Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local.
-3. Por fim, envie via email o projeto ou o fork/link do projeto para seu contato Bycoders_ com cópia para rh@bycoders.com.br.
+Divided into the following projects:
 
-# Descrição do projeto
+- **Core:** C#, .NET 6, Entity Framework Core, and SQL Server<br />
+Provides connection with database and repositories for common components rather than WebApi.
 
-Você recebeu um arquivo CNAB com os dados das movimentações finanaceira de várias lojas.
-Precisamos criar uma maneira para que estes dados sejam importados para um banco de dados.
+- **Web Api:** C#, .NET 6, WebApi, and Swagger<br />
+Provides services, controllers and receives requests and send responses from/to web.
 
-Sua tarefa é criar uma interface web que aceite upload do [arquivo CNAB](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt), normalize os dados e armazene-os em um banco de dados relacional e exiba essas informações em tela.
+- **Front end:** Angular 13, RxJS, SCSS, Bootstrap, and FontAwesome<br />
+The user front end application, send and receives data from the web api.
 
-**Sua aplicação web DEVE:**
 
-1. Ter uma tela (via um formulário) para fazer o upload do arquivo(pontos extras se não usar um popular CSS Framework )
-2. Interpretar ("parsear") o arquivo recebido, normalizar os dados, e salvar corretamente a informação em um banco de dados relacional, **se atente as documentações** que estão logo abaixo.
-3. Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta
-4. Ser escrita na sua linguagem de programação de preferência
-5. Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix (Linux ou Mac OS X). Ela deve utilizar apenas linguagens e bibliotecas livres ou gratuitas.
-6. Git com commits atomicos e bem descritos
-7. PostgreSQL, MySQL ou SQL Server
-8. Ter testes automatizados
-9. Docker compose (Pontos extras se utilizar)
-10. Readme file descrevendo bem o projeto e seu setup
-11. Incluir informação descrevendo como consumir o endpoint da API
+# Project Setup
 
-**Sua aplicação web não precisa:**
+After cloning repository, to setup the development environment and run the projects you must follow:
 
-1. Lidar com autenticação ou autorização (pontos extras se ela fizer, mais pontos extras se a autenticação for feita via OAuth).
-2. Ser escrita usando algum framework específico (mas não há nada errado em usá-los também, use o que achar melhor).
-3. Documentação da api.(Será um diferencial e pontos extras se fizer)
+## Back end (Web Api)
 
-# Documentação do CNAB
+### 1. Set the local the user secrets as the example:
+Replace the Server, Initial Catalog, User Id, and Password from the connection string with the values from your environment and set your own JWT Key.
+- *You can use the https://passwordsgenerator.net/ to generate the JWT Key, set the legth to 29 and Exclude Ambiguous Characters*
+- :point_right: *In case you are not running the project from Visual Studio, edit the ```appsettings.Development.json``` andding manually the entries*
 
-| Descrição do campo  | Inicio | Fim | Tamanho | Comentário
-| ------------- | ------------- | -----| ---- | ------
-| Tipo  | 1  | 1 | 1 | Tipo da transação
-| Data  | 2  | 9 | 8 | Data da ocorrência
-| Valor | 10 | 19 | 10 | Valor da movimentação. *Obs.* O valor encontrado no arquivo precisa ser divido por cem(valor / 100.00) para normalizá-lo.
-| CPF | 20 | 30 | 11 | CPF do beneficiário
-| Cartão | 31 | 42 | 12 | Cartão utilizado na transação 
-| Hora  | 43 | 48 | 6 | Hora da ocorrência atendendo ao fuso de UTC-3
-| Dono da loja | 49 | 62 | 14 | Nome do representante da loja
-| Nome loja | 63 | 81 | 19 | Nome da loja
+```
+secrets.json
+{
+  "ConnectionStrings:DefaultConnection": "Server=[Host]; Initial Catalog=[Database]; User Id=[User]; Password=[Password];",
+  "JWT:Key": "[JWT Key]"
+}
+```
+```
+appsettings.Development.json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=[Host]; Initial Catalog=[Database]; User Id=[User]; Password=[Password];"
+  },
+  "JWT": {
+    "Key": "[JWT Key]",
+    ...
+  },
+  ...
+}
+```
 
-# Documentação sobre os tipos das transações
+### 2. Run the project
 
-| Tipo | Descrição | Natureza | Sinal |
-| ---- | -------- | --------- | ----- |
-| 1 | Débito | Entrada | + |
-| 2 | Boleto | Saída | - |
-| 3 | Financiamento | Saída | - |
-| 4 | Crédito | Entrada | + |
-| 5 | Recebimento Empréstimo | Entrada | + |
-| 6 | Vendas | Entrada | + |
-| 7 | Recebimento TED | Entrada | + |
-| 8 | Recebimento DOC | Entrada | + |
-| 9 | Aluguel | Saída | - |
+:red_circle: **Attention: This project is in .NET 6, if you try run the solution from Visual Studio 2019 you will get an error!**
 
-# Avaliação
+:yellow_heart: The web api will automatically try to connect with your database server to create / update the database during the application startup, you don't need to manually run ```Database-Update``` to apply the migrations.
 
-Seu projeto será avaliado de acordo com os seguintes critérios.
+When executing for the first time, will ask you to Trust ASP.NET Core SSL Certificate
 
-1. Sua aplicação preenche os requerimentos básicos?
-2. Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-3. Você seguiu as instruções de envio do desafio?
-4. Qualidade e cobertura dos testes unitários.
+- Check the option Don't ask me again;
+- Click **Yes**;
+- And click **Yes** again.
 
-Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
+## Front end (Angular)
 
-# Referência
+### 1. Install the NPM packages 
 
-Este desafio foi baseado neste outro desafio: https://github.com/lschallenges/data-engineering
+From the front end root folder, execute ```npm install```.
 
----
+```
+C:\...\desafio-dev\ByCoders.Importer.Angular>npm install
+```
 
-Boa sorte!
+### 2. Trust HTTPS certificate
+
+The front end is also running in HTTPS, you need first add the development certificate as trusted.
+
+- Open the file ```C:\...\desafio-dev\ByCoders.Importer.Angular\ssl\server.crt```;
+- Click Install Certificate...;
+- Click Next;
+- Select **Place all certificates in the following store**;
+- Browse for **Trusted Root Certification Authorities**;
+- Click Next and Finish;
+- Click Yes in the security warning message;
+- You should have a confirmation the import was successfull;
+- Click Ok and close the certificate.
+
+### 3. Run the project
+
+From the front end root folder again, execute ```npm run start``` to execute the project.
+
+This command will compile and opens browser automatically once finished.
+
+*You might be asked to share anonumous usage data about this project with Angular Team during the first execution*
+
+```
+C:\...\desafio-dev\ByCoders.Importer.Angular>npm run start
+```
+
+### 4. Access to the application
+
+To access the application you can use the credentials:
+
+```
+Username: ricardo.zambon
+Password: zambon
+```
