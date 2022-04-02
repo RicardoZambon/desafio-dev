@@ -23,7 +23,7 @@ namespace ByCoders.Importer.WebApi.Controllers
         /// <returns>The transactions list.</returns>
         /// <response code="200">List sucessfully returned.</response>
         /// <response code="401">Missing parameter.</response>
-        /// <response code="400">Internal server issue.</response>
+        /// <response code="500">Internal server issue.</response>
         [HttpPost, Route("[action]")]
         public IActionResult List(QueryParametersModel parameters)
         {
@@ -37,7 +37,7 @@ namespace ByCoders.Importer.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -48,7 +48,7 @@ namespace ByCoders.Importer.WebApi.Controllers
         /// <returns>The summary with the items count and value amount.</returns>
         /// <response code="200">Summary sucessfully returned.</response>
         /// <response code="401">Missing parameter.</response>
-        /// <response code="400">Internal server issue.</response>
+        /// <response code="500">Internal server issue.</response>
         [HttpPost, Route("[action]")]
         public IActionResult Summary(SummaryParametersModel parameters)
         {
@@ -62,7 +62,7 @@ namespace ByCoders.Importer.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
     }
