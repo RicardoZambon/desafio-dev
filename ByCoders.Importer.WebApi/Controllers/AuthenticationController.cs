@@ -33,7 +33,7 @@ namespace ByCoders.Importer.WebApi.Controllers
         /// </remarks>
         /// <response code="200">Sucessfully authenticated.</response>
         /// <response code="401">Invalid username or password.</response>
-        /// <response code="400">Internal server issue.</response>
+        /// <response code="500">Internal server issue.</response>
         [HttpPost, Route("[action]"), AllowAnonymous]
         public async Task<IActionResult> SignIn(SignInModel model)
         {
@@ -58,7 +58,7 @@ namespace ByCoders.Importer.WebApi.Controllers
         /// <returns>The JWT Token and Refresh Token.</returns>
         /// <response code="200">Sucessfully refreshed the token.</response>
         /// <response code="401">Invalid Refresh Token or Refresh Token expired.</response>
-        /// <response code="400">Internal server issue.</response>
+        /// <response code="500">Internal server issue.</response>
         [HttpPost, Route("[action]"), AllowAnonymous]
         public async Task<IActionResult> RefreshToken(RefreshTokenModel model)
         {

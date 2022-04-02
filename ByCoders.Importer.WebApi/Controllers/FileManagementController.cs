@@ -18,8 +18,8 @@ namespace ByCoders.Importer.WebApi.Controllers
         /// Upload and import text file with transactions. The file must be in the POST Form.
         /// </summary>
         /// <response code="200">File sucessfully imported.</response>
-        /// <response code="400">Provided file is not in correct format.</response>
-        /// <response code="400">Internal server issue.</response>
+        /// <response code="400">Missing files in POST form.</response>
+        /// <response code="500">Internal server issue.</response>
         [HttpPost, Route("[action]"), RequestSizeLimit(4194304)]
         public async Task<IActionResult> Upload()
         {
