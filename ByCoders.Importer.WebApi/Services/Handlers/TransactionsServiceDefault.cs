@@ -72,7 +72,7 @@ namespace ByCoders.Importer.WebApi.Services.Handlers
                     await transactionRepository.InsertAsync(recordTransaction);
                 }
 
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
                 await dbTransaction.CommitAsync();
             }
             catch
