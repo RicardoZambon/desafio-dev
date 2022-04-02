@@ -14,6 +14,12 @@ namespace ByCoders.Importer.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Display a list of available transaction types.
+        /// </summary>
+        /// <returns>The transaction types.</returns>
+        /// <response code="200">List returned successfully.</response>
+        /// <response code="400">Internal server issue.</response>
         [HttpGet, Route("[action]")]
         public IActionResult TransactionTypes()
         {

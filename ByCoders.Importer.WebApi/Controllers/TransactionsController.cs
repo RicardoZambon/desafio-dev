@@ -16,6 +16,14 @@ namespace ByCoders.Importer.WebApi.Controllers
         }
 
 
+        /// <summary>
+        /// Returns the list of transactions.
+        /// </summary>
+        /// <param name="parameters">Parameters to display the transactions list with start range, end range, filters, and sort.</param>
+        /// <returns>The transactions list.</returns>
+        /// <response code="200">List sucessfully returned.</response>
+        /// <response code="401">Missing parameter.</response>
+        /// <response code="400">Internal server issue.</response>
         [HttpPost, Route("[action]")]
         public IActionResult List(QueryParametersModel parameters)
         {
@@ -33,6 +41,14 @@ namespace ByCoders.Importer.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns the summary of the transactions (items count and value amount).
+        /// </summary>
+        /// <param name="parameters">Parameters to filter and calculate the summary.</param>
+        /// <returns>The summary with the items count and value amount.</returns>
+        /// <response code="200">Summary sucessfully returned.</response>
+        /// <response code="401">Missing parameter.</response>
+        /// <response code="400">Internal server issue.</response>
         [HttpPost, Route("[action]")]
         public IActionResult Summary(SummaryParametersModel parameters)
         {
