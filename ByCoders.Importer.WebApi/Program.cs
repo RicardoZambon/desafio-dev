@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -76,7 +77,11 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services
     .AddSwaggerGen(c =>
     {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "ByCoders.Importer.WebApi", Version = "v1" });
+        c.SwaggerDoc("v1", new OpenApiInfo {
+            Version = "v1",
+            Title = "ByCoders Importer WebApi",
+            Contact = new OpenApiContact {  Name = "Ricardo Zambon", Url = new Uri("https://github.com/RicardoZambon") }
+        });
 
         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
@@ -99,6 +104,9 @@ builder.Services
                             Array.Empty<string>()
                         }
         });
+
+        var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
     });
 
 //CORS
