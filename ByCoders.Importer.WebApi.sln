@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByCoders.Importer.WebApi", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByCoders.Importer.Core", "ByCoders.Importer.Core\ByCoders.Importer.Core.csproj", "{89963951-A7A3-4D6F-BE4A-88CE4AC88B1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByCoders.Importer.Test", "ByCoders.Importer.Test\ByCoders.Importer.Test.csproj", "{2306BE63-56AC-42BE-A512-1D18CDD3CD39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{89963951-A7A3-4D6F-BE4A-88CE4AC88B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89963951-A7A3-4D6F-BE4A-88CE4AC88B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89963951-A7A3-4D6F-BE4A-88CE4AC88B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2306BE63-56AC-42BE-A512-1D18CDD3CD39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2306BE63-56AC-42BE-A512-1D18CDD3CD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2306BE63-56AC-42BE-A512-1D18CDD3CD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2306BE63-56AC-42BE-A512-1D18CDD3CD39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

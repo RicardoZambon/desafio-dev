@@ -15,7 +15,7 @@ namespace ByCoders.Importer.WebApi.Controllers
 
 
         [HttpGet, Route("[action]")]
-        public async Task<IActionResult> TransactionTypes()
+        public IActionResult TransactionTypes()
         {
             try
             {

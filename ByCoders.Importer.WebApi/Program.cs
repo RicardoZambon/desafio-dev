@@ -141,7 +141,7 @@ app.UseCors();
 //});
 
 //Apply database migrations during runtime
-//using var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
-//scope.ServiceProvider.GetService<AppDbContext>().Database.Migrate();
+using var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+scope.ServiceProvider.GetService<AppDbContext>().Database.Migrate();
 
 app.Run();
