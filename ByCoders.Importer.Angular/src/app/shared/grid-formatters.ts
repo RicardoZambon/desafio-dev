@@ -1,10 +1,12 @@
 import { ValueFormatterParams } from 'ag-grid-community';
 
 export function currencyFormatter(params: ValueFormatterParams) {
+  const valueFormatter = new Intl.NumberFormat('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  
   const number = parseFloat(params.value);
   
   if (!isNaN(number)) {
-    return number.toFixed(2);
+    return valueFormatter.format(number);
   }
 
   return '';
