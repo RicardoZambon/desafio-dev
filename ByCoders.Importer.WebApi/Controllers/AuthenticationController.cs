@@ -30,7 +30,7 @@ namespace ByCoders.Importer.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -51,7 +51,7 @@ namespace ByCoders.Importer.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
     }
