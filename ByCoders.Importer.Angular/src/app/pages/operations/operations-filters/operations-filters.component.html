@@ -1,0 +1,45 @@
+<form [formGroup]="filterForm" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col">
+            <div class="form-floating">
+                <input class="form-control" list="datalistOptions" id="transactionTypes"
+                [formControlName]="'transactionType'"
+                (change)="selectedTransactionType()">
+
+                <datalist id="datalistOptions">
+                    <option data-value="transactionType.id" [value]="transactionType.description" *ngFor="let transactionType of (transactionTypes$ | async)"></option>
+                </datalist>
+
+                <label for="transactionTypes">Transaction type</label>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="startDate" [formControlName]="'startDate'" />
+                <label for="startDate">Start date</label>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="endDate" [formControlName]="'endDate'" />
+                <label for="endDate">End date</label>
+            </div>
+        </div>
+
+        <div class="col-auto button-container">
+            <button class="btn btn-warning" type="button" (click)="clearForm()">
+                <i class="fas fa-rotate-left"></i>
+                Reset
+            </button>
+        </div>
+
+        <div class="col-auto button-container">
+            <button class="btn btn-primary">
+                <i class="fas fa-filter"></i>
+                Filter
+            </button>
+        </div>
+    </div>
+</form>

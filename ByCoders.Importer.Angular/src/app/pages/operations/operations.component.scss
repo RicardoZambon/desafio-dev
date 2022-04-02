@@ -1,0 +1,27 @@
+
+.grid-container {
+    margin-top: .5rem;
+    display: flex;
+    flex-grow: 1;
+
+    .card-body {
+        padding: 0;
+        display: flex;
+        flex-grow: 1;
+
+        ag-grid-angular {
+            flex-grow: 1;
+        }
+    }
+}
+
+:host ::ng-deep
+{
+    .ag-root-wrapper {
+        border: 0 !important;
+    }
+    
+    .number-cell {
+        text-align: right;
+    }
+}
