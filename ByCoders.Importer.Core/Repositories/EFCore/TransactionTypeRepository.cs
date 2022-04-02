@@ -14,7 +14,7 @@ namespace ByCoders.Importer.Core.Repositories.EFCore
 
         public IQueryable<TransactionTypes> List()
         {
-            return dbContext.Set<TransactionTypes>().AsQueryable();
+            return dbContext.Set<TransactionTypes>().OrderBy(x => x.Description);
         }
     }
 }

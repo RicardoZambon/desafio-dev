@@ -35,22 +35,17 @@ namespace ByCoders.Importer.Core.Repositories.EFCore
 
                 if (filters.ContainsKey(nameof(Transactions.TransactionType)))
                 {
-                    list = list.Where(x => x.TransactionTypeID == Convert.ToInt32(filters[nameof(Transactions.TransactionType)]));
+                    list = list.Where(x => x.TransactionTypeID == Convert.ToInt32(filters[nameof(Transactions.TransactionType)].ToString()));
                 }
 
-                if (filters.ContainsKey(nameof(Transactions.CPF)))
+                if (filters.ContainsKey("StartDate"))
                 {
-                    list = list.Where(x => EF.Functions.Like(x.CPF, $"%{filters[nameof(Transactions.CPF)]}%"));
+                    list = list.Where(x => x.Date >= Convert.ToDateTime(filters["StartDate"].ToString()));
                 }
 
-                if (filters.ContainsKey(nameof(Transactions.ShopName)))
+                if (filters.ContainsKey("EndDate"))
                 {
-                    list = list.Where(x => EF.Functions.Like(x.CPF, $"%{filters[nameof(Transactions.ShopName)]}%"));
-                }
-
-                if (filters.ContainsKey(nameof(Transactions.ShopOwner)))
-                {
-                    list = list.Where(x => EF.Functions.Like(x.CPF, $"%{filters[nameof(Transactions.ShopOwner)]}%"));
+                    list = list.Where(x => x.Date <= Convert.ToDateTime(filters["EndDate"].ToString()));
                 }
             }
 

@@ -1,12 +1,11 @@
-import { OperationsDatasource } from './../../shared/datasources/operations-datasource';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef, ValueFormatterParams } from 'ag-grid-community';
+import { ColDef } from 'ag-grid-community';
 
 import { TransactionsService } from './../../shared/services/transactions.service';
 import { GridLoadingRendererComponent } from 'src/app/shared/components/grid/grid-loading-renderer-component/grid-loading-renderer.component';
 import { cpfFormatter, currencyFormatter, dateTimeFormatter } from 'src/app/shared/grid-formatters';
+import { OperationsDatasource } from './../../shared/datasources/operations-datasource';
 
 @Component({
   selector: 'app-operations',
@@ -35,8 +34,6 @@ export class OperationsComponent implements OnInit {
 
   dataSource = new OperationsDatasource(this.transactionsService);
 
-  rowData!: Observable<any[]>;
-
 
   constructor(private transactionsService: TransactionsService) { }
 
@@ -44,9 +41,12 @@ export class OperationsComponent implements OnInit {
     
   }
 
-
   onGridReady(): void {
     this.grid.api.setDatasource(this.dataSource);
   }
-}
 
+  setFilters(filters: { [index: string]: Object }) {
+    this.dataSource.setFilters(filters);
+    this.grid.api.setDatasource(this.dataSource);
+  }
+}

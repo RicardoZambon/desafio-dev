@@ -5,5 +5,5 @@ export interface IQueryParameters {
 
     sort: { [index: string]: string };
 
-    filters: { [index: string]: string };
+    filters: { [index: string]: Object };
 }

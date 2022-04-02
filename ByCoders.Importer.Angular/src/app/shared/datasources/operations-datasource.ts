@@ -8,6 +8,8 @@ import { TransactionsService } from './../services/transactions.service';
 export class OperationsDatasource implements IDatasource {
     modules = [ InfiniteRowModelModule ];
 
+    currentFilters: { [index: string]: Object } = {};
+
     constructor(private transactionsService: TransactionsService) {
     }
 
@@ -20,17 +22,14 @@ export class OperationsDatasource implements IDatasource {
         sort: params.sortModel.reduce((result, el) =>
           ({ ...result, [el.colId]: el.sort }), {}
         ),
-        filters: params.filterModel
+        filters: this.currentFilters
       };
-      
-      console.log('getRows', params, apiParams);
 
       await lastValueFrom(
         this.transactionsService.list(apiParams)
       )
       .then (data => {
         var lastRow = -1;
-        console.log(data.length, params.endRow);
         if (data.length < params.endRow) {
           lastRow = data.length;
         }
@@ -39,5 +38,9 @@ export class OperationsDatasource implements IDatasource {
       .catch(() => {
         params.failCallback();
       });
+    }
+
+    setFilters(filters: { [index: string]: Object }) {
+        this.currentFilters = filters;
     }
 }

@@ -7,13 +7,15 @@ import { LoginComponent } from './authentication/login/login.component';
 import { ImporterComponent } from './importer/importer.component';
 import { OperationsComponent } from './operations/operations.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { OperationsFiltersComponent } from './operations/operations-filters/operations-filters.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     ImporterComponent,
-    OperationsComponent
+    OperationsComponent,
+    OperationsFiltersComponent
   ],
   imports: [
     CommonModule,
