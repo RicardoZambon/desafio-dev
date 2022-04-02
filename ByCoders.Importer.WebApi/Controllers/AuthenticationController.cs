@@ -54,12 +54,5 @@ namespace ByCoders.Importer.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpPost, Route("[action]")]
-        public IActionResult Logout()
-        {
-            Response.Cookies.Delete("AuthCookie");
-            return Ok();
-        }
     }
 }
