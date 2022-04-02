@@ -28,7 +28,7 @@ namespace ByCoders.Importer.WebApi.Services.Handlers
             using var fileStream = file.OpenReadStream();
             using var stream = new StreamReader(fileStream);
 
-            var transactionTypesIds = transactionTypeRepository.List().Select(x => x.ID).ToArray();
+            var transactionTypesIds = transactionTypeRepository.List().ToArray();
 
             using var dbTransaction = await dbContext.Database.BeginTransactionAsync();
             try
@@ -36,40 +36,46 @@ namespace ByCoders.Importer.WebApi.Services.Handlers
                 string line;
                 while ((line = stream.ReadLine() ?? string.Empty) != string.Empty)
                 {
-                    var transactionType = Convert.ToInt32(line[..1]);
+                    var transactionTypeId = Convert.ToInt32(line[..1]);
 
-                    if (!transactionTypesIds.Contains(transactionType))
+                    if (transactionTypesIds.FirstOrDefault(x => x.ID.Equals(transactionTypeId)) is TransactionTypes transactionType)
+                    {
+                        var year = Convert.ToInt32(line.Substring(1, 4));
+                        var month = Convert.ToInt32(line.Substring(5, 2));
+                        var day = Convert.ToInt32(line.Substring(7, 2));
+                        var hour = Convert.ToInt32(line.Substring(42, 2));
+                        var minute = Convert.ToInt32(line.Substring(44, 2));
+                        var second = Convert.ToInt32(line.Substring(46, 2));
+
+                        var value = Convert.ToDecimal(line.Substring(9, 10)) / 100;
+
+                        if (transactionType.Kind == BusinessEnums.TransactionTypeKinds.Withdraw)
+                        {
+                            value *= -1;
+                        }
+
+                        var taxId = line.Substring(19, 11);
+                        var cardNumber = line.Substring(30, 12);
+                        var shopOwner = line.Substring(48, 14).Trim();
+                        var shopName = line.Substring(62, 18).Trim();
+
+                        var recordTransaction = new Transactions
+                        {
+                            TransactionTypeID = transactionTypeId,
+                            Date = new DateTime(year, month, day, hour, minute, second),
+                            Value = value,
+                            CPF = taxId,
+                            CardNumber = cardNumber,
+                            ShopOwner = shopOwner,
+                            ShopName = shopName
+                        };
+
+                        await transactionRepository.InsertAsync(recordTransaction);
+                    }
+                    else
                     {
                         throw new InvalidTransactionTypeException();
                     }
-
-                    var year = Convert.ToInt32(line.Substring(1, 4));
-                    var month = Convert.ToInt32(line.Substring(5, 2));
-                    var day = Convert.ToInt32(line.Substring(7, 2));
-                    var hour = Convert.ToInt32(line.Substring(42, 2));
-                    var minute = Convert.ToInt32(line.Substring(44, 2));
-                    var second = Convert.ToInt32(line.Substring(46, 2));
-
-                    var value = Convert.ToDecimal(line.Substring(9, 10)) / 100;
-
-                    var taxId = line.Substring(19, 11);
-                    var cardNumber = line.Substring(30, 12);
-                    var shopOwner = line.Substring(48, 14).Trim();
-                    var shopName = line.Substring(62, 18).Trim();
-
-
-                    var recordTransaction = new Transactions
-                    {
-                        TransactionTypeID = transactionType,
-                        Date = new DateTime(year, month, day, hour, minute, second),
-                        Value = value,
-                        CPF = taxId,
-                        CardNumber = cardNumber,
-                        ShopOwner = shopOwner,
-                        ShopName = shopName
-                    };
-
-                    await transactionRepository.InsertAsync(recordTransaction);
                 }
 
                 await dbContext.SaveChangesAsync();

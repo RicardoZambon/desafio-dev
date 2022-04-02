@@ -14,7 +14,8 @@
 
     <div class="col-auto">
         <div class="form-floating">
-            <div class="form-control disabled" id="totalValue">
+            <div class="form-control disabled" id="totalValue"
+            [ngClass]="((transactionSummary | async)?.totalValue ?? 0) > 0 ? 'text-primary' : 'text-danger'">
                 {{ valueFormatter.format((transactionSummary | async)?.totalValue ?? 0) }}
             </div>
             <label for="totalValue">Total value</label>
