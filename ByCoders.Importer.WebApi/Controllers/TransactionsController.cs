@@ -17,7 +17,7 @@ namespace ByCoders.Importer.WebApi.Controllers
 
 
         [HttpPost, Route("[action]")]
-        public async Task<IActionResult> List(QueryParametersModel parameters)
+        public IActionResult List(QueryParametersModel parameters)
         {
             try
             {
