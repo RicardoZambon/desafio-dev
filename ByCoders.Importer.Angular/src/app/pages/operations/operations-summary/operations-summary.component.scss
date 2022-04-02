@@ -1,0 +1,22 @@
+
+div {
+    &.col {
+        align-items: center;
+        display: flex;
+
+        h5 {
+            margin-bottom: 0;
+        }
+    }
+
+    &.form-control {
+        min-width: 9rem;
+        text-align: right;
+        font-weight: 600;
+    }
+
+    label {
+        white-space: nowrap;
+    }
+}
+

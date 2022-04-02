@@ -85,5 +85,16 @@ namespace ByCoders.Importer.WebApi.Services.Handlers
         {
             return transactionRepository.List(parameters).ProjectTo<TransactionsModel>(mapper.ConfigurationProvider);
         }
+
+        public TransactionsSummaryModel Summary(SummaryParametersModel parameters)
+        {
+            var transactions = transactionRepository.List(parameters);
+
+            return new TransactionsSummaryModel
+            {
+                TotalItems = transactions.Count(),
+                TotalValue = transactions.Sum(x => x.Value)
+            };
+        }
     }
 }

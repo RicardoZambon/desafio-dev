@@ -1,3 +1,4 @@
+import { OperationsSummaryComponent } from './operations-summary/operations-summary.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
@@ -16,6 +17,7 @@ import { OperationsDatasource } from './../../shared/datasources/operations-data
 export class OperationsComponent implements OnInit {
 
   @ViewChild('grid') grid!: AgGridAngular;
+  @ViewChild('summary') summary!: OperationsSummaryComponent;
 
   frameworkComponents: any = {
     loadingRenderer: GridLoadingRendererComponent
@@ -48,5 +50,6 @@ export class OperationsComponent implements OnInit {
   setFilters(filters: { [index: string]: Object }) {
     this.dataSource.setFilters(filters);
     this.grid.api.setDatasource(this.dataSource);
+    this.summary.refreshSummary(filters);
   }
 }

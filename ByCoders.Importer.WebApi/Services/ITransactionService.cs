@@ -7,5 +7,7 @@ namespace ByCoders.Importer.WebApi.Services
         Task ImportTransactionsFromFile(IFormFile file);
 
         IQueryable<TransactionsModel> List(QueryParametersModel parameters);
+
+        TransactionsSummaryModel Summary(SummaryParametersModel parameters);
     }
 }

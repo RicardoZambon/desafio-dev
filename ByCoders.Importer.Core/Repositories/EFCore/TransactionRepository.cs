@@ -20,7 +20,8 @@ namespace ByCoders.Importer.Core.Repositories.EFCore
             await dbContext.Set<Transactions>().AddAsync(transactions);
         }
 
-        public IQueryable<Transactions> List(IQueryParameters parameters)
+
+        public IQueryable<Transactions> List(ISummaryParameters parameters)
         {
             if (parameters == null)
             {
@@ -48,6 +49,18 @@ namespace ByCoders.Importer.Core.Repositories.EFCore
                     list = list.Where(x => x.Date <= Convert.ToDateTime(filters["EndDate"].ToString()));
                 }
             }
+
+            return list;
+        }
+
+        public IQueryable<Transactions> List(IQueryParameters parameters)
+        {
+            if (parameters == null)
+            {
+                throw new MissingQueryParametersException();
+            }
+
+            var list = List(parameters as ISummaryParameters);
 
             if (parameters?.Sort?.Any() ?? false)
             {
