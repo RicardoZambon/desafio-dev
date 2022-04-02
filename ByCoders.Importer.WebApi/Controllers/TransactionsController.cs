@@ -32,5 +32,22 @@ namespace ByCoders.Importer.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost, Route("[action]")]
+        public IActionResult Summary(SummaryParametersModel parameters)
+        {
+            try
+            {
+                return Ok(transactionService.Summary(parameters));
+            }
+            catch (MissingQueryParametersException)
+            {
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

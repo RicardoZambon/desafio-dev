@@ -2,7 +2,12 @@
 
 namespace ByCoders.Importer.WebApi.Models
 {
-    public class QueryParametersModel : IQueryParameters
+    public class SummaryParametersModel : ISummaryParameters
+    {
+        public IDictionary<string, object> Filters { get; set; }
+    }
+
+    public class QueryParametersModel : SummaryParametersModel, IQueryParameters
     {
         public int StartRow { get; set; }
 

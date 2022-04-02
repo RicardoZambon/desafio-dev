@@ -7,6 +7,8 @@ namespace ByCoders.Importer.Core.Repositories
     {
         Task InsertAsync(Transactions transactions);
 
+        IQueryable<Transactions> List(ISummaryParameters parameters);
+
         IQueryable<Transactions> List(IQueryParameters parameters);
     }
 }

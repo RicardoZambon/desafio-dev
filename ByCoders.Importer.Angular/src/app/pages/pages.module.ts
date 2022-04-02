@@ -8,6 +8,7 @@ import { ImporterComponent } from './importer/importer.component';
 import { OperationsComponent } from './operations/operations.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { OperationsFiltersComponent } from './operations/operations-filters/operations-filters.component';
+import { OperationsSummaryComponent } from './operations/operations-summary/operations-summary.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { OperationsFiltersComponent } from './operations/operations-filters/oper
     LoginComponent,
     ImporterComponent,
     OperationsComponent,
-    OperationsFiltersComponent
+    OperationsFiltersComponent,
+    OperationsSummaryComponent
   ],
   imports: [
     CommonModule,
