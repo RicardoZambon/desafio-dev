@@ -27,7 +27,6 @@
     &.btn-importer {
         $color-contrast-light: 'white';
         @include button-variant($home-base-color3, darken($home-base-color3, 3%));
-    
     }
 
     .fas, .fa-spinner {
