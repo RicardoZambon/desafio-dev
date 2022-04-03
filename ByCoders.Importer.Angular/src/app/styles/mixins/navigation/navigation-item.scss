@@ -14,7 +14,7 @@
     $scroll-color: darken($home-base-color3, 7%),
 ) {
     .nav-item {
-        
+
         .active-item:before {
             background-color: $active-item-indicator-color;
         }

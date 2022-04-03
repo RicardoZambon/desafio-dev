@@ -4,7 +4,7 @@
         height: 0;
         background: $color;
     }
-    
+
     &::-webkit-scrollbar-thumb {
         border-radius: 10px;
         background: darken($color, 10%);
@@ -15,7 +15,7 @@
     }
 
     &:hover {
-        &::-webkit-scrollbar-thumb{
+        &::-webkit-scrollbar-thumb {
             background: rgba(0, 0, 0, .45)
         }
     }
