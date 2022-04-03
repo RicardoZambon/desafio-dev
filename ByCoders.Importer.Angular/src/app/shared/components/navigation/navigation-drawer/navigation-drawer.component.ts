@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { delay, lastValueFrom, map, of, tap } from 'rxjs';
 
@@ -33,17 +33,9 @@ export class NavigationDrawerComponent implements OnInit {
 
   private activeRootNode: MenuItem | null = null;
 
-
-  constructor(private router: Router, private ref: ChangeDetectorRef) {
-      ref.detach();
-  }
+  constructor(private router: Router) { }
 
   ngOnInit(): void { 
-  }
-
-  ngAfterViewInit() {
-      this.ref.reattach();
-      this.ref.detectChanges();
   }
 
 
@@ -173,11 +165,11 @@ export class NavigationDrawerComponent implements OnInit {
 
 
   public getOffsetHeight(): number {
-    return this.navMenu?.nativeElement?.offsetHeight ?? 0;
+    return this.navMenu.nativeElement.offsetHeight;
   }
 
   public getOffsetTop(): number {
-    return this.navMenu?.nativeElement?.offsetTop ?? 0;
+    return this.navMenu.nativeElement.offsetTop;
   }
 
   public updateScroll(event: number) {
