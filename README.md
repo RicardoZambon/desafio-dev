@@ -8,7 +8,7 @@ This solution is using the following technologies:
 - xUnit
 - Angular 13 with RxJS
 - SCSS
-- Bootstrap and FontAwesome
+- Bootstrap and Font Awesome
 
 Divided into the following projects:
 
@@ -110,3 +110,30 @@ To access the application you can use the credentials:
 Username: ricardo.zambon
 Password: zambon
 ```
+
+# API
+### Authentication
+* **[POST] Authentication / SiginIn** (model)<br />
+Validate the user credentials against the users in database, expects to receive the model with username and password as plain text (password is encrypted in backend).
+
+Returns an object with the JWT access token (expiration in 600 minutes) and the refresh token (expiration in 10 days).
+
+* **[POST] Authentication / RefreshToken** (moel)<br />
+Validate the refresh token and updates the expired JWT token used to access the API, expects to receive the model with the username and refresh token.
+
+
+### Catalogs
+* **[GET] Catalogs / TransactionTypes** ()<br />
+Return a catalog (ID & Description) of the transaction types availables.
+
+
+### FileManagement
+* **[POST] FileManagement / Upload** ()<br />
+Upload a text file with the transactions list, expects to receive the file in the request form.
+
+### Transactions
+* **[POST] Transactions / List** (parameters)<br />
+Return a list of the transactions, expects to receive a parameter with the start and end range, filters and sort options.
+
+* **[POST] Transactions / Summary** (parameters)<br />
+Return the transactions summary information, expects to receive a parameter with filters.
