@@ -6,7 +6,7 @@
     <div class="col-auto">
         <div class="form-floating">
             <div class="form-control disabled" id="totalRows">
-                {{ numberFormatter.format((transactionSummary | async)?.totalItems ?? 0) }}
+                {{ (transactionSummary | async)?.totalItems }}
             </div>
             <label for="totalRows">Total operations</label>
         </div>
@@ -15,8 +15,8 @@
     <div class="col-auto">
         <div class="form-floating">
             <div class="form-control disabled" id="totalValue"
-            [ngClass]="((transactionSummary | async)?.totalValue ?? 0) > 0 ? 'text-primary' : 'text-danger'">
-                {{ valueFormatter.format((transactionSummary | async)?.totalValue ?? 0) }}
+            [ngClass]="valueKind === 'deposit' ? 'text-primary' : 'text-danger'">
+                {{ (transactionSummary | async)?.totalValue }}
             </div>
             <label for="totalValue">Total value</label>
         </div>
