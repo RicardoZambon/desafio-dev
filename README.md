@@ -8,7 +8,7 @@ This solution is using the following technologies:
 - xUnit
 - Angular 13 with RxJS
 - SCSS
-- Bootstrap and FontAwesome
+- Bootstrap and Font Awesome
 
 Divided into the following projects:
 
@@ -22,91 +22,53 @@ Provides services, controllers and receives requests and send responses from/to 
 The user front end application, send and receives data from the web api.
 
 
-# Project Setup
+## [Project Setup](SETUP.md)
 
-After cloning repository, to setup the development environment and run the projects you must follow:
+For the project setup step by step, please, go to the [SETUP.md](SETUP.md) file.
 
-## Back end (Web Api)
+## [API Documentation](API.md)
 
-### 1. Set the local the user secrets as the example:
-Replace the Server, Initial Catalog, User Id, and Password from the connection string with the values from your environment and set your own JWT Key.
-- *You can use the https://passwordsgenerator.net/ to generate the JWT Key, set the legth to 29 and Exclude Ambiguous Characters*
-- :point_right: *In case you are not running the project from Visual Studio, edit the ```appsettings.Development.json``` andding manually the entries*
+For the API documentation, please, go to the [API.md](API.md) file.
 
-```
-secrets.json
-{
-  "ConnectionStrings:DefaultConnection": "Server=[Host]; Initial Catalog=[Database]; User Id=[User]; Password=[Password];",
-  "JWT:Key": "[JWT Key]"
-}
-```
-```
-appsettings.Development.json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=[Host]; Initial Catalog=[Database]; User Id=[User]; Password=[Password];"
-  },
-  "JWT": {
-    "Key": "[JWT Key]",
-    ...
-  },
-  ...
-}
-```
+## Project description
 
-### 2. Run the project
+* :white_check_mark: Tela (via um formulário) para fazer o upload do arquivo
+* :white_check_mark: Interpretar ("parsear") do arquivo recebido, normalização dos dados, e salvar corretamente a informação em um banco de dados relacional
+* :white_check_mark: Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta
+* :white_check_mark: Escrito em C# .NET 6
+* :white_check_mark: Simples de configurar e rodar, funciona em ambiente compatível com Unix (Linux ou Mac OS X). Utiliza apenas linguagens e bibliotecas livres ou gratuitas.
+* :white_check_mark: Git com commits atomicos e bem descritos
+* :white_check_mark: SQL Server
+* :white_check_mark: Testes automatizados
+* :black_square_button: Docker compose (Pendente)
+* :white_check_mark: Readme file descrevendo bem o projeto e seu setup
+* :white_check_mark: Informação descrevendo como consumir o endpoint da API
+* :eight_pointed_black_star: **Extra:** Faz autenticação ou autorização (JWT com Refresh Token)
+* :eight_pointed_black_star: **Extra:** Documentação da API (Markdown e Swagger)
 
-:red_circle: **Attention: This project is in .NET 6, if you try run the solution from Visual Studio 2019 you will get an error!**
+## Documentação do CNAB
 
-:yellow_heart: The web api will automatically try to connect with your database server to create / update the database during the application startup, you don't need to manually run ```Database-Update``` to apply the migrations.
+| Descrição do campo  | Inicio | Fim | Tamanho | Comentário
+| ------------- | ------------- | -----| ---- | ------
+| Tipo  | 1  | 1 | 1 | Tipo da transação
+| Data  | 2  | 9 | 8 | Data da ocorrência
+| Valor | 10 | 19 | 10 | Valor da movimentação. *Obs.* O valor encontrado no arquivo precisa ser divido por cem(valor / 100.00) para normalizá-lo.
+| CPF | 20 | 30 | 11 | CPF do beneficiário
+| Cartão | 31 | 42 | 12 | Cartão utilizado na transação 
+| Hora  | 43 | 48 | 6 | Hora da ocorrência atendendo ao fuso de UTC-3
+| Dono da loja | 49 | 62 | 14 | Nome do representante da loja
+| Nome loja | 63 | 81 | 19 | Nome da loja
 
-When executing for the first time, will ask you to Trust ASP.NET Core SSL Certificate
+## Documentação sobre os tipos das transações
 
-- Check the option Don't ask me again;
-- Click **Yes**;
-- And click **Yes** again.
-
-## Front end (Angular)
-
-### 1. Install the NPM packages 
-
-From the front end root folder, execute ```npm install```.
-
-```
-C:\...\desafio-dev\ByCoders.Importer.Angular>npm install
-```
-
-### 2. Trust HTTPS certificate
-
-The front end is also running in HTTPS, you need first add the development certificate as trusted.
-
-- Open the file ```C:\...\desafio-dev\ByCoders.Importer.Angular\ssl\server.crt```;
-- Click Install Certificate...;
-- Click Next;
-- Select **Place all certificates in the following store**;
-- Browse for **Trusted Root Certification Authorities**;
-- Click Next and Finish;
-- Click Yes in the security warning message;
-- You should have a confirmation the import was successfull;
-- Click Ok and close the certificate.
-
-### 3. Run the project
-
-From the front end root folder again, execute ```npm run start``` to execute the project.
-
-This command will compile and opens browser automatically once finished.
-
-*You might be asked to share anonumous usage data about this project with Angular Team during the first execution*
-
-```
-C:\...\desafio-dev\ByCoders.Importer.Angular>npm run start
-```
-
-### 4. Access to the application
-
-To access the application you can use the credentials:
-
-```
-Username: ricardo.zambon
-Password: zambon
-```
+| Tipo | Descrição | Natureza | Sinal |
+| ---- | -------- | --------- | ----- |
+| 1 | Débito | Entrada | + |
+| 2 | Boleto | Saída | - |
+| 3 | Financiamento | Saída | - |
+| 4 | Crédito | Entrada | + |
+| 5 | Recebimento Empréstimo | Entrada | + |
+| 6 | Vendas | Entrada | + |
+| 7 | Recebimento TED | Entrada | + |
+| 8 | Recebimento DOC | Entrada | + |
+| 9 | Aluguel | Saída | - |

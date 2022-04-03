@@ -1,7 +1,7 @@
 import { OperationsSummaryComponent } from './operations-summary/operations-summary.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, RowClassParams } from 'ag-grid-community';
 
 import { TransactionsService } from './../../shared/services/transactions.service';
 import { GridLoadingRendererComponent } from 'src/app/shared/components/grid/grid-loading-renderer-component/grid-loading-renderer.component';
@@ -33,8 +33,13 @@ export class OperationsComponent implements OnInit {
     { colId: 'transactionType', field: 'transactionType', headerName: 'Transaction Type', suppressMovable: true, minWidth: 220, maxWidth: 220, sortable: true, flex: 1 },
     { colId: 'value',           field: 'value',           headerName: 'Value', suppressMovable: true, minWidth: 110, maxWidth: 110, sortable: false, flex: 1, cellClass: 'number-cell', valueFormatter: currencyFormatter },
   ];
-
+  
   dataSource = new OperationsDatasource(this.transactionsService);
+
+  rowClassRules = {
+      'text-danger': function(params: RowClassParams) { return (params.data?.value ?? 0) < 0; },
+      'text-primary': function(params: RowClassParams) { return (params.data?.value ?? 0) > 0; }
+  }
 
 
   constructor(private transactionsService: TransactionsService) { }
