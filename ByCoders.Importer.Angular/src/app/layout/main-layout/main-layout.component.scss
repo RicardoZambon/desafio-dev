@@ -1,7 +1,6 @@
 @import "/src/app/styles/variables/home.theme";
 @import "/src/app/styles/mixins/background";
 @import "/src/app/styles/bootstrap";
-
 @import '/src/app/styles/mixins/navigation/navigation-drawer';
 
 .main {
@@ -12,7 +11,6 @@
         font-size: 0.9rem;
         color: $home-fore-color;
         z-index: 2;
-
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
         -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
         -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
@@ -37,7 +35,7 @@
         }
     }
 
-    .container-fluid {    
+    .container-fluid {
         @include background(darken($home-base-color, 13%), .9);
 
         .background:before {

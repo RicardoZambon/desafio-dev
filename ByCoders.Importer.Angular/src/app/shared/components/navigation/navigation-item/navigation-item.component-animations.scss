@@ -40,7 +40,7 @@
 
             &.open-float-menu, &.close-float-menu {
                 animation-duration: 0.4s;
-                animation-timing-function: ease-in-out;;
+                animation-timing-function: ease-in-out;
                 animation-fill-mode: forwards;
                 transition: height 0s;
             }
@@ -73,7 +73,7 @@
             transition: all $menu-animation-speed ease-in-out;
         }
     }
-    
+
     &.opened  > .nav-link.has-sub-menu:after {
         -webkit-transform: rotate(-90deg);
         -moz-transform: rotate(-90deg);

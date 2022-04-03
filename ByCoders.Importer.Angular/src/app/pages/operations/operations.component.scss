@@ -19,12 +19,11 @@
     margin-top: .5rem;
 }
 
-:host ::ng-deep
-{
+:host ::ng-deep {
     .ag-root-wrapper {
         border: 0 !important;
     }
-    
+
     .number-cell {
         text-align: right;
     }
