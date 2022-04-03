@@ -40,7 +40,7 @@ For the API documentation, please, go to the [API.md](API.md) file.
 * :white_check_mark: Git com commits atomicos e bem descritos
 * :white_check_mark: SQL Server
 * :white_check_mark: Testes automatizados
-* :black_square_button: Docker compose (Pendente)
+* :white_check_mark: Docker compose
 * :white_check_mark: Readme file descrevendo bem o projeto e seu setup
 * :white_check_mark: Informação descrevendo como consumir o endpoint da API
 * :eight_pointed_black_star: **Extra:** Faz autenticação ou autorização (JWT com Refresh Token)
