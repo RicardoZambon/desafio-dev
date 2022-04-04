@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: #[Set-database-password-here]
+      TZ: America/Sao_Paulo
+      MSSQL_PID: Standard
+    hostname: sql
+    networks:
+      - bycoders-network
+
+  api:
+    build: ./
+    environment:
+      "ConnectionStrings:DefaultConnection": Server=sql;Initial Catalog=ByCodersImporter;User Id=sa;Password= #[Set-database-password-here]
+      "JWT:Key": #[Set-JWT-Key-here]
+    hostname: api
+    expose:
+      - 8081
+    ports:
+      - "8081:80"
+    networks:
+      - bycoders-network
+    depends_on:
+      - db
+
+  web:
+    build: ./ByCoders.Importer.Angular
+    ports:
+      - "8080:80"
+    networks:
+      - bycoders-network
+    depends_on:
+      - api
+
+networks: 
+  bycoders-network:
+    driver: bridge
