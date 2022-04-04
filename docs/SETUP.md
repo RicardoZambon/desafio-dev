@@ -3,13 +3,13 @@
 
 This project is divided into two applications (Back-end and Front-end), you will need to setup both projects to rum them in development.
 
-**Default configuration:** *(HTTPS)*
-Back-end: https://localhost:44352/swagger
-Front-end: https://localhost:4200/
+**Default configuration:** *(HTTPS)*<br />
+Back-end: https://localhost:44352/swagger<br />
+Front-end: https://localhost:4200/<br />
 
 After cloning the repository into your computer, follow the steps:
 
-## Back-end (Web Api)
+## Back-end (Web Api) https://localhost:44352/swagger
 
 ### 1. Set the local user secrets:
 Replace the ```Server```, ```Initial Catalog```, ```User Id```, and ```Password``` from the connection string with the values from your environment and set your own ```JWT Key```.
@@ -49,7 +49,7 @@ When executing for the first time, you will be asked to Trust ASP.NET Core SSL C
 - Click **Yes**;
 - And click **Yes** again.
 
-## Front end (Angular)
+## Front end (Angular) https://localhost:4200/
 
 With the backend configured and running, you can set the front-end:
 
