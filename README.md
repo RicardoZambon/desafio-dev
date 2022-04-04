@@ -22,15 +22,33 @@ Provides services, controllers and receives requests and send responses from/to 
 The user front end application, send and receives data from the web api.
 
 
-## [Project Setup](SETUP.md)
+## Project setup
 
-For the project setup step by step, please, go to the [SETUP.md](SETUP.md) file.
+Follow this [link](docs/SETUP.md) to execute the steps to run this project in development.
 
-## [API Documentation](API.md)
+**Default configuration:** *(HTTPS)*
+- Back-end: https://localhost:44352/swagger
+- Front-end: https://localhost:4200/
 
-For the API documentation, please, go to the [API.md](API.md) file.
+## API documentation
+
+The API documentation is available [here](docs/API.md).
+
+## Front-end documentation
+
+The Front-end documentation is available [here](docs/WEB.md).
+
+## Docker compose
+
+Follow [these steps](DOCKER-COMPOSE.md) to run the docker-compose.
+
+**Default configuration:** *(HTTP only)*
+- Back-end: http://localhost:8081/swagger
+- Front-end: http://localhost:8080/
 
 ## Project description
+
+[Click here](docs/CHALLENGE.md) to check the original challenge readme file.
 
 * :white_check_mark: Tela (via um formulário) para fazer o upload do arquivo
 * :white_check_mark: Interpretar ("parsear") do arquivo recebido, normalização dos dados, e salvar corretamente a informação em um banco de dados relacional
