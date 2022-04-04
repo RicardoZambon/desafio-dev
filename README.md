@@ -62,7 +62,7 @@ Follow [these steps](DOCKER-COMPOSE.md) to run the docker-compose.
 * :white_check_mark: Readme file descrevendo bem o projeto e seu setup
 * :white_check_mark: Informação descrevendo como consumir o endpoint da API
 * :eight_pointed_black_star: **Extra:** Faz autenticação ou autorização (JWT com Refresh Token)
-* :eight_pointed_black_star: **Extra:** Documentação da API (Markdown e Swagger)
+* :eight_pointed_black_star: **Extra:** Documentação da API (Markdown e Swagger) **+ WEB (com prints)**
 
 ## Documentação do CNAB
 
