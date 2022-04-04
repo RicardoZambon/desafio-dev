@@ -9,6 +9,8 @@ This file intends to explain the front-end project.
 
 ### Login page
 
+<img src="web_login.jpeg" />
+
 The login page is displayed by default when trying access the application without previous authentication, you need provide a valid username and password to proceed to the Home.
 
 For development / tests purposes you can use the following demo account:
