@@ -5,9 +5,8 @@
 This file intends to explain the controllers and methods available in API, for a more detailed description, please, check that the Swagger is available with far more documented method and parameters.
 
 - **Development URL:** https://localhost:44352 *HTTPS*
-- **Docker-compose:** http://localhost:8081
-
-*Swagger available during development and docker-compose.*
+- **Docker-compose:** http://localhost:8081<br />
+:point_right: *Swagger available during development and docker-compose.*
 
 ### Authentication
 * **[POST] api / Authentication / SiginIn** (model)<br />
